@@ -161,7 +161,7 @@
                 android:ellipsize="end"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:fontFamily="@font/source_sans_3_regular"
+                android:fontFamily="@font/source_sans_3_regular_400"
                 android:text="MIN"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
@@ -174,7 +174,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:text="15.5 dB"
-                android:fontFamily="@font/source_sans_3_medium"
+                android:fontFamily="@font/source_sans_3_medium_500"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -202,7 +202,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:text="AVG"
-                android:fontFamily="@font/source_sans_3_regular"
+                android:fontFamily="@font/source_sans_3_regular_400"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
 
@@ -214,7 +214,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:text="15.5 dB"
-                android:fontFamily="@font/source_sans_3_medium"
+                android:fontFamily="@font/source_sans_3_medium_500"
 
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
@@ -242,7 +242,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:text="MAX"
-                android:fontFamily="@font/source_sans_3_regular"
+                android:fontFamily="@font/source_sans_3_regular_400"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
 
@@ -254,7 +254,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:text="15.5 dB"
-                android:fontFamily="@font/source_sans_3_medium"
+                android:fontFamily="@font/source_sans_3_medium_500"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
