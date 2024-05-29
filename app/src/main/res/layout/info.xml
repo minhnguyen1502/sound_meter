@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:contentDescription="back"
+        android:padding="12dp"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/source_sans_3_semi_bold"
+        android:text="Info"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+        app:layout_constraintEnd_toStartOf="@+id/gone"
+        app:layout_constraintStart_toEndOf="@+id/iv_back"
+        app:layout_constraintTop_toTopOf="@+id/iv_back" />
+
+    <ImageView
+        android:id="@+id/gone"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="4dp"
+        android:clickable="false"
+        android:contentDescription="back"
+        android:focusable="false"
+        android:padding="12dp"
+        android:src="@drawable/arrow_left"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_back" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="20.17dp">
+
+                <ImageView
+                    android:id="@+id/iv_sound_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_sound_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="14.3dp"
+                    android:src="@drawable/ic_rustling"
+                    app:layout_constraintStart_toEndOf="@id/iv_sound_color"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/ic_whisper"
+                    app:layout_constraintEnd_toEndOf="@id/iv_1"
+                    app:layout_constraintStart_toStartOf="@id/iv_1"
+                    app:layout_constraintTop_toBottomOf="@id/iv_1" />
+
+                <ImageView
+                    android:id="@+id/iv_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/ic_refrigerator"
+                    app:layout_constraintEnd_toEndOf="@id/iv_2"
+                    app:layout_constraintStart_toStartOf="@id/iv_2"
+                    app:layout_constraintTop_toBottomOf="@id/iv_2" />
+
+                <ImageView
+                    android:id="@+id/iv_4"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/office"
+                    app:layout_constraintEnd_toEndOf="@id/iv_3"
+                    app:layout_constraintStart_toStartOf="@id/iv_3"
+                    app:layout_constraintTop_toBottomOf="@id/iv_3" />
+
+                <ImageView
+                    android:id="@+id/iv_5"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/car"
+                    app:layout_constraintEnd_toEndOf="@id/iv_4"
+                    app:layout_constraintStart_toStartOf="@id/iv_4"
+                    app:layout_constraintTop_toBottomOf="@id/iv_4" />
+
+                <ImageView
+                    android:id="@+id/iv_6"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/truck"
+                    app:layout_constraintEnd_toEndOf="@id/iv_5"
+                    app:layout_constraintStart_toStartOf="@id/iv_5"
+                    app:layout_constraintTop_toBottomOf="@id/iv_5" />
+
+                <ImageView
+                    android:id="@+id/iv_7"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/lawn_mower"
+                    app:layout_constraintEnd_toEndOf="@id/iv_6"
+                    app:layout_constraintStart_toStartOf="@id/iv_6"
+                    app:layout_constraintTop_toBottomOf="@id/iv_6" />
+
+                <ImageView
+                    android:id="@+id/iv_8"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/train"
+                    app:layout_constraintEnd_toEndOf="@id/iv_7"
+                    app:layout_constraintStart_toStartOf="@id/iv_7"
+                    app:layout_constraintTop_toBottomOf="@id/iv_7" />
+
+                <ImageView
+                    android:id="@+id/iv_9"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/trombone"
+                    app:layout_constraintEnd_toEndOf="@id/iv_8"
+                    app:layout_constraintStart_toStartOf="@id/iv_8"
+                    app:layout_constraintTop_toBottomOf="@id/iv_8" />
+
+                <ImageView
+                    android:id="@+id/iv_10"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/siren"
+                    app:layout_constraintEnd_toEndOf="@id/iv_9"
+                    app:layout_constraintStart_toStartOf="@id/iv_9"
+                    app:layout_constraintTop_toBottomOf="@id/iv_9" />
+
+                <ImageView
+                    android:id="@+id/iv_11"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/fighter_jet"
+                    app:layout_constraintEnd_toEndOf="@id/iv_10"
+                    app:layout_constraintStart_toStartOf="@id/iv_10"
+                    app:layout_constraintTop_toBottomOf="@id/iv_10" />
+
+                <ImageView
+                    android:id="@+id/iv_12"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/firework_explosion"
+                    app:layout_constraintEnd_toEndOf="@id/iv_11"
+                    app:layout_constraintStart_toStartOf="@id/iv_11"
+                    app:layout_constraintTop_toBottomOf="@id/iv_11" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_1"
+                    app:layout_constraintStart_toEndOf="@id/iv_1"
+                    app:layout_constraintTop_toTopOf="@id/iv_1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_1"
+                    app:layout_constraintStart_toEndOf="@id/iv_1"
+                    app:layout_constraintTop_toTopOf="@id/iv_1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_2"
+                    app:layout_constraintStart_toEndOf="@id/iv_2"
+                    app:layout_constraintTop_toTopOf="@id/iv_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_3"
+                    app:layout_constraintStart_toEndOf="@id/iv_3"
+                    app:layout_constraintTop_toTopOf="@id/iv_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_4"
+                    app:layout_constraintStart_toEndOf="@id/iv_4"
+                    app:layout_constraintTop_toTopOf="@id/iv_4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_5"
+                    app:layout_constraintStart_toEndOf="@id/iv_5"
+                    app:layout_constraintTop_toTopOf="@id/iv_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_6"
+                    app:layout_constraintStart_toEndOf="@id/iv_6"
+                    app:layout_constraintTop_toTopOf="@id/iv_6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_7"
+                    app:layout_constraintStart_toEndOf="@id/iv_7"
+                    app:layout_constraintTop_toTopOf="@id/iv_7" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_8"
+                    app:layout_constraintStart_toEndOf="@id/iv_8"
+                    app:layout_constraintTop_toTopOf="@id/iv_8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_9"
+                    app:layout_constraintStart_toEndOf="@id/iv_9"
+                    app:layout_constraintTop_toTopOf="@id/iv_9" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_10"
+                    app:layout_constraintStart_toEndOf="@id/iv_10"
+                    app:layout_constraintTop_toTopOf="@id/iv_10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_11"
+                    app:layout_constraintStart_toEndOf="@id/iv_11"
+                    app:layout_constraintTop_toTopOf="@id/iv_11" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Normal breathing, Mosquito"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_12"
+                    app:layout_constraintStart_toEndOf="@id/iv_12"
+                    app:layout_constraintTop_toTopOf="@id/iv_12" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_hearing"
+                android:layout_marginBottom="189.7dp"
+                android:layout_marginTop="32dp">
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/source_sans_3_semi_bold"
+                    android:text="Hearing protection"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/source_sans_3_light"
+                    android:text="The information below shows dB levels that may affect your hearing:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_1" />
+
+                <TextView
+                    android:id="@+id/tv_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:text="Comfortable"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_2"
+                    app:layout_constraintTop_toBottomOf="@id/tv_2" />
+
+                <TextView
+                    android:id="@+id/tv_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:text="Comfortable"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_3"
+                    app:layout_constraintTop_toBottomOf="@id/tv_3" />
+
+                <TextView
+                    android:id="@+id/tv_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:text="Comfortable"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_4"
+                    app:layout_constraintTop_toBottomOf="@id/tv_4" />
+
+                <TextView
+                    android:id="@+id/tv_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:text="Comfortable"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_5"
+                    app:layout_constraintTop_toBottomOf="@id/tv_5" />
+
+                <TextView
+                    android:id="@+id/tv_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:text="Comfortable"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_6"
+                    app:layout_constraintTop_toBottomOf="@id/tv_6" />
+
+                <TextView
+                    android:id="@+id/tv_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/source_sans_3_medium"
+                    android:text="Comfortable"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="15.5dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_8"
+                    app:layout_constraintTop_toBottomOf="@id/tv_8" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
