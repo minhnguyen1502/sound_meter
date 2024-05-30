@@ -9,7 +9,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="4dp"
-        android:contentDescription="back"
+        android:contentDescription="Back"
         android:padding="12dp"
         android:src="@drawable/arrow_left"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,16 +29,16 @@
         android:maxLines="1"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_back"
-        app:layout_constraintEnd_toStartOf="@+id/iv_check"
+        app:layout_constraintEnd_toStartOf="@+id/iv_confirm"
         app:layout_constraintStart_toEndOf="@+id/iv_back"
         app:layout_constraintTop_toTopOf="@+id/iv_back" />
 
     <ImageView
-        android:id="@+id/iv_check"
+        android:id="@+id/iv_confirm"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="4dp"
-        android:contentDescription="back"
+        android:contentDescription="Confirm"
         android:padding="12dp"
         android:src="@drawable/ic_check_save"
         app:layout_constraintEnd_toEndOf="parent"

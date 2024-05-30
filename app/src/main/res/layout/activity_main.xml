@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/setting"
+        android:id="@+id/img_setting"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="4dp"
@@ -33,10 +33,10 @@
         android:text="@string/sound_meter"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@id/setting"
+        app:layout_constraintBottom_toBottomOf="@id/img_setting"
         app:layout_constraintEnd_toStartOf="@id/ivGone"
-        app:layout_constraintStart_toEndOf="@+id/setting"
-        app:layout_constraintTop_toTopOf="@+id/setting" />
+        app:layout_constraintStart_toEndOf="@+id/img_setting"
+        app:layout_constraintTop_toTopOf="@+id/img_setting" />
 
     <ImageView
         android:id="@+id/ivGone"
@@ -61,8 +61,8 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/button"
         android:paddingHorizontal="8dp"
-        app:layout_constraintStart_toStartOf="@+id/setting"
-        app:layout_constraintTop_toBottomOf="@+id/setting">
+        app:layout_constraintStart_toStartOf="@+id/img_setting"
+        app:layout_constraintTop_toBottomOf="@+id/img_setting">
 
         <ImageView
             android:id="@+id/ivInfo"
@@ -90,6 +90,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
@@ -123,7 +124,7 @@
             app:layout_constraintTop_toTopOf="@+id/iv_reset" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
+    <com.example.soundmeter.widget.SoundView
         android:id="@+id/iv_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -167,6 +168,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tv_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -207,6 +209,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tv_avg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -247,6 +250,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tv_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -260,8 +264,9 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
     </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
