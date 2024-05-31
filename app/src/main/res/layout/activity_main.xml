@@ -124,16 +124,52 @@
             app:layout_constraintTop_toTopOf="@+id/iv_reset" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.example.soundmeter.widget.SoundView
+    <com.example.soundmeter.SoundView
         android:id="@+id/iv_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/khung"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:background="@drawable/img_meter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_info" />
 
+    <TextView
+    android:id="@+id/tv_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="500"
+        android:textColor="@color/white"
+        android:fontFamily="@font/source_sans_3_semi_bold_600"
+        android:textSize="40sp"
+        android:layout_marginBottom="43dp"
+        android:focusable="false"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toTopOf="@+id/layout_value"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <TextView
+        android:id="@+id/tv_db"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dB"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/source_sans_3_semi_bold_600"
+        android:textSize="24sp"
+        android:focusable="false"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toTopOf="@+id/layout_value"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <LinearLayout
+        android:id="@+id/layout_value"
         android:layout_marginHorizontal="24dp"
         android:orientation="horizontal"
         android:weightSum="3"
@@ -266,7 +302,13 @@
         </LinearLayout>
     </LinearLayout>
 
-
-
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
