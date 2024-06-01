@@ -18,6 +18,12 @@ public class SettingActivity extends AppCompatActivity {
         settingBinding = SettingBinding.inflate(getLayoutInflater());
         setContentView(settingBinding.getRoot());
 
+        settingBinding.ivArrowLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     settingBinding.constraintLanguage.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {

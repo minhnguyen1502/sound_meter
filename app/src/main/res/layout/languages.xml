@@ -16,11 +16,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_info"
+        android:id="@+id/tv_language"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/source_sans_3_semi_bold_600"
-        android:text="Languages"
+        android:text="@string/language"
         android:textColor="#FFFFFF"
         android:gravity="center"
         android:includeFontPadding="false"
@@ -67,9 +67,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView
+            android:id="@+id/tv_eng"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="English"
+            android:text="@string/english"
             android:fontFamily="@font/be_vietnam_pro_regular_400"
             android:textSize="14sp"
             android:ellipsize="end"
@@ -106,9 +107,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView
+            android:id="@+id/tv_hi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Hindi"
+            android:text="@string/hindi"
             android:fontFamily="@font/be_vietnam_pro_regular_400"
             android:textSize="14sp"
             android:ellipsize="end"
@@ -144,9 +146,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView
+            android:id="@+id/tv_es"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Spanish"
+            android:text="@string/spanish"
             android:fontFamily="@font/be_vietnam_pro_regular_400"
             android:textSize="14sp"
             android:ellipsize="end"
@@ -183,9 +186,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView
+            android:id="@+id/tv_fr"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="French"
+            android:text="@string/french"
             android:fontFamily="@font/be_vietnam_pro_regular_400"
             android:textSize="14sp"
             android:ellipsize="end"
@@ -222,9 +226,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView
+            android:id="@+id/tv_de"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="German"
+            android:text="@string/german"
             android:fontFamily="@font/be_vietnam_pro_regular_400"
             android:textSize="14sp"
             android:ellipsize="end"
@@ -261,9 +266,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView
+            android:id="@+id/tv_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Indonesia"
+            android:text="@string/indonesia"
             android:fontFamily="@font/be_vietnam_pro_regular_400"
             android:textSize="14sp"
             android:ellipsize="end"
@@ -300,9 +306,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView
+            android:id="@+id/tv_pt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Portuguese"
+            android:text="@string/portuguese"
             android:fontFamily="@font/be_vietnam_pro_regular_400"
             android:textSize="14sp"
             android:ellipsize="end"

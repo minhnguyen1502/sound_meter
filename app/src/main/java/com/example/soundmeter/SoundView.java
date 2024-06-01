@@ -20,7 +20,6 @@ public class SoundView extends View {
     private Bitmap indiBitmap;
     private Paint paint = new Paint();
     static final long ANIMATION_INTERVAL = 20;
-
     public SoundView(Context context) {
         super(context);
     }

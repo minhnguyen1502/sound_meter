@@ -117,7 +117,7 @@
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:maxLines="1"
-            android:text="Reset"
+            android:text="@string/reset"
             app:layout_constraintBottom_toBottomOf="@+id/iv_reset"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_reset"
@@ -304,11 +304,13 @@
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="328dp"
+        android:layout_height="168dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_line_chart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_value"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
