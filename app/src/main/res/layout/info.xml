@@ -61,7 +61,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,8 +72,8 @@
 
                 <ImageView
                     android:id="@+id/iv_sound_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="33.66dp"
+                    android:layout_height="465.3dp"
                     android:src="@drawable/img_sound_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -204,31 +204,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/source_sans_3_medium_500"
-                    android:text="Normal breathing, Mosquito"
-                    android:textColor="@color/white"
-                    android:textSize="14dp"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_1"
-                    app:layout_constraintStart_toEndOf="@id/iv_1"
-                    app:layout_constraintTop_toTopOf="@id/iv_1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/source_sans_3_medium_500"
-                    android:lines="1"
-                    android:maxLines="1"
                     android:text="@string/text_1_info"
                     android:textColor="@color/white"
                     android:textSize="14dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
                     app:layout_constraintBottom_toBottomOf="@id/iv_1"
                     app:layout_constraintStart_toEndOf="@id/iv_1"
                     app:layout_constraintTop_toTopOf="@id/iv_1" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -344,7 +328,7 @@
                     android:maxLines="1"
                     android:text="@string/text_9_info"
                     android:textColor="@color/white"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_9"
                     app:layout_constraintStart_toEndOf="@id/iv_9"
                     app:layout_constraintTop_toTopOf="@id/iv_9" />
@@ -359,7 +343,7 @@
                     android:maxLines="1"
                     android:text="@string/text_10_info"
                     android:textColor="@color/white"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_10"
                     app:layout_constraintStart_toEndOf="@id/iv_10"
                     app:layout_constraintTop_toTopOf="@id/iv_10" />
@@ -374,7 +358,7 @@
                     android:maxLines="1"
                     android:text="@string/text_11_info"
                     android:textColor="@color/white"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_11"
                     app:layout_constraintStart_toEndOf="@id/iv_11"
                     app:layout_constraintTop_toTopOf="@id/iv_11" />
@@ -445,7 +429,9 @@
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_2"
-                    app:layout_constraintTop_toBottomOf="@id/tv_2" />
+                    app:layout_constraintTop_toTopOf="@id/tv_10_40"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_10_40"/>
+
 
                 <TextView
                     android:id="@+id/tv_4"
@@ -456,8 +442,10 @@
                     android:text="@string/text_16_info"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="@id/tv_3"
-                    app:layout_constraintTop_toBottomOf="@id/tv_3" />
+                    app:layout_constraintStart_toStartOf="@id/tv_2"
+                    app:layout_constraintTop_toTopOf="@id/tv_50"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_50"/>
+
 
                 <TextView
                     android:id="@+id/tv_5"
@@ -468,8 +456,10 @@
                     android:text="@string/text_17_info"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="@id/tv_4"
-                    app:layout_constraintTop_toBottomOf="@id/tv_4" />
+                    app:layout_constraintStart_toStartOf="@id/tv_2"
+                    app:layout_constraintTop_toTopOf="@id/tv_55_80"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_55_80"/>
+
 
                 <TextView
                     android:id="@+id/tv_6"
@@ -480,8 +470,10 @@
                     android:text="@string/text_18_info"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="@id/tv_5"
-                    app:layout_constraintTop_toBottomOf="@id/tv_5" />
+                    app:layout_constraintStart_toStartOf="@id/tv_2"
+                    app:layout_constraintTop_toTopOf="@id/tv_80_85"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_80_85"/>
+
 
                 <TextView
                     android:id="@+id/tv_7"
@@ -492,8 +484,9 @@
                     android:text="@string/text_19_info"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="@id/tv_6"
-                    app:layout_constraintTop_toBottomOf="@id/tv_6"/>
+                    app:layout_constraintStart_toStartOf="@id/tv_2"
+                    app:layout_constraintTop_toTopOf="@id/tv_90_100"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_90_100"/>
 
                 <TextView
                     android:id="@+id/tv_8"
@@ -505,10 +498,12 @@
                     android:text="@string/text_20_info"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="@id/tv_7"
-                    app:layout_constraintTop_toBottomOf="@id/tv_7" />
+                    app:layout_constraintStart_toStartOf="@id/tv_2"
+                    app:layout_constraintTop_toTopOf="@id/tv_120_140"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_120_140"/>
 
                 <TextView
+                    android:id="@+id/tv_10_40"
                     android:layout_width="76dp"
                     android:layout_height="28dp"
                     android:background="@drawable/bg_sound_db"
@@ -517,12 +512,13 @@
                     android:gravity="center"
                     android:fontFamily="@font/source_sans_3_medium_500"
                     android:text="10~40dB"
+                    android:layout_marginTop="10dp"
                     android:textColor="#002E31"
                     app:layout_constraintEnd_toEndOf="@id/tv_2"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_3"
-                    app:layout_constraintTop_toTopOf="@id/tv_3"
+                    app:layout_constraintTop_toBottomOf="@id/tv_2"
                     />
                 <TextView
+                    android:id="@+id/tv_50"
                     android:layout_width="76dp"
                     android:layout_height="28dp"
                     android:background="@drawable/bg_sound_db"
@@ -533,10 +529,12 @@
                     android:text="~50dB"
                     android:textColor="#002E31"
                     app:layout_constraintEnd_toEndOf="@id/tv_2"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_4"
-                    app:layout_constraintTop_toTopOf="@id/tv_4"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_10_40"
+
                     />
                 <TextView
+                    android:id="@+id/tv_55_80"
                     android:layout_width="76dp"
                     android:layout_height="28dp"
                     android:background="@drawable/bg_sound_db"
@@ -547,10 +545,12 @@
                     android:text="55~80dB"
                     android:textColor="#002E31"
                     app:layout_constraintEnd_toEndOf="@id/tv_2"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_5"
-                    app:layout_constraintTop_toTopOf="@id/tv_5"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_50"
+
                     />
                 <TextView
+                    android:id="@+id/tv_80_85"
                     android:layout_width="76dp"
                     android:layout_height="28dp"
                     android:background="@drawable/bg_sound_db"
@@ -561,11 +561,13 @@
                     android:text="80~85dB"
                     android:textColor="#002E31"
                     app:layout_constraintEnd_toEndOf="@id/tv_2"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_6"
-                    app:layout_constraintTop_toTopOf="@id/tv_6"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_55_80"
+
                     />
 
                 <TextView
+                    android:id="@+id/tv_90_100"
                     android:layout_width="76dp"
                     android:layout_height="28dp"
                     android:background="@drawable/bg_sound_db"
@@ -576,10 +578,12 @@
                     android:text="90~100dB"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="@id/tv_2"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_7"
-                    app:layout_constraintTop_toTopOf="@id/tv_7"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_80_85"
+
                     />
                 <TextView
+                    android:id="@+id/tv_120_140"
                     android:layout_width="76dp"
                     android:layout_height="28dp"
                     android:background="@drawable/bg_sound_db"
@@ -591,8 +595,8 @@
                     android:text="120~140dB"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="@id/tv_2"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_8"
-                    app:layout_constraintTop_toTopOf="@id/tv_8"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_90_100"
                     />
 
 

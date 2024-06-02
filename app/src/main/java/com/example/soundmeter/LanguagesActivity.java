@@ -2,7 +2,12 @@ package com.example.soundmeter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -13,6 +18,8 @@ import java.util.Locale;
 
 public class LanguagesActivity extends AppCompatActivity {
 
+    public static final String PREFS_NAME = "LanguagePrefs";
+    public static final String PREF_LANGUAGE = "SelectedLanguage";
     LanguagesBinding languagesBinding;
     private String selectedLanguage;
 
@@ -25,7 +32,6 @@ public class LanguagesActivity extends AppCompatActivity {
         languagesBinding.constraintEng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                changeLanguage("en");
                 selectedLanguage = "en";
                 Toast.makeText(LanguagesActivity.this, "You choose English", Toast.LENGTH_SHORT).show();
             }
@@ -50,7 +56,8 @@ public class LanguagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                changeLanguage("hi");
+                selectedLanguage = "hi";
+
                 Toast.makeText(LanguagesActivity.this, "You choose Hindi", Toast.LENGTH_SHORT).show();
 
             }
@@ -92,21 +99,34 @@ public class LanguagesActivity extends AppCompatActivity {
                 if (selectedLanguage == null) {
                     Toast.makeText(LanguagesActivity.this, "choose language before change", Toast.LENGTH_SHORT).show();
                 } else {
-                    changeLanguage(selectedLanguage);
+                    changeLanguage(LanguagesActivity.this,selectedLanguage);
+                    saveSelectedLanguage(selectedLanguage);
+
+                    Intent i = new Intent(LanguagesActivity.this, MainActivity.class);
+                    finish();
+                    startActivity(i);
                     Toast.makeText(LanguagesActivity.this, "You changed language success", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    public void changeLanguage(String language) {
+    public void changeLanguage(Activity activity,String language) {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
-        Configuration configuration = new Configuration();
-        configuration.locale = locale;
-        getApplication().getResources().updateConfiguration(configuration,
-                getApplication().getResources().getDisplayMetrics());
+
+        Resources resources = activity.getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration,
+                resources.getDisplayMetrics());
 
 
+    }
+    private void saveSelectedLanguage(String language) {
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(PREF_LANGUAGE, language);
+        editor.apply();
     }
 }
