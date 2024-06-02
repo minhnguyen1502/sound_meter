@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.soundmeter.databinding.SettingBinding;
 
@@ -38,10 +39,29 @@ public class SettingActivity extends AppCompatActivity {
         String selectedLanguage = getSelectedLanguage();
         settingBinding.tvChangeLanguage.setText(getLanguageDisplayName(selectedLanguage));
 
-    settingBinding.tvAbout.setOnClickListener(new View.OnClickListener() {
+    settingBinding.layoutAbout.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             startActivity(new Intent(SettingActivity.this, AboutActivity.class));
+        }
+    });
+    settingBinding.layoutShare.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(SettingActivity.this, "share", Toast.LENGTH_SHORT).show();
+        }
+    });
+    settingBinding.layoutRate.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(SettingActivity.this, "rate", Toast.LENGTH_SHORT).show();
+        }
+    });
+
+    settingBinding.layoutPriprivacyPolicy.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(SettingActivity.this, "privacy policy", Toast.LENGTH_SHORT).show();
         }
     });
     }
