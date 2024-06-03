@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
+        android:background="?android:attr/actionBarItemBackground"
         android:id="@+id/iv_back"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="4dp"
-        android:contentDescription="Back"
+        android:contentDescription="back"
         android:padding="12dp"
         android:src="@drawable/arrow_left"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_language"
@@ -34,6 +37,7 @@
         app:layout_constraintTop_toTopOf="@+id/iv_back" />
 
     <ImageView
+        android:background="?android:attr/actionBarItemBackground"
         android:id="@+id/iv_confirm"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -42,7 +46,8 @@
         android:padding="12dp"
         android:src="@drawable/ic_check_save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_back" />
+        app:layout_constraintTop_toTopOf="@+id/iv_back"
+        tools:ignore="HardcodedText" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_eng"
@@ -65,7 +70,8 @@
             android:src="@drawable/img_eng"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAccessibility="no" />
         <TextView
             android:id="@+id/tv_eng"
             android:layout_width="0dp"
@@ -105,7 +111,8 @@
             android:src="@drawable/img_hindi"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAccessibility="no" />
         <TextView
             android:id="@+id/tv_hi"
             android:layout_width="0dp"
@@ -144,7 +151,8 @@
             android:src="@drawable/img_spanish"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAccessibility="no" />
         <TextView
             android:id="@+id/tv_es"
             android:layout_width="0dp"
@@ -264,7 +272,8 @@
             android:src="@drawable/img_indo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAccessibility="no" />
         <TextView
             android:id="@+id/tv_in"
             android:layout_width="0dp"
@@ -304,7 +313,8 @@
             android:src="@drawable/img_portu"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAccessibility="no" />
         <TextView
             android:id="@+id/tv_pt"
             android:layout_width="0dp"

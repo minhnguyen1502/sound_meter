@@ -1,6 +1,7 @@
-package com.example.soundmeter;
+package com.example.soundmeter.utils;
 
 import android.media.MediaRecorder;
+import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,6 +50,7 @@ public class Recoder {
 
             return true;
         } catch (IOException exception) {
+            Log.e("Sound_Meter",exception.toString());
             mediaRecorder.reset();
             mediaRecorder.release();
             mFile = null;
@@ -56,6 +58,7 @@ public class Recoder {
             exception.getStackTrace();
             return false;
         } catch (IllegalStateException e) {
+            Log.e("Sound_Mete1",e.toString());
             stopRecoding();
             e.getStackTrace();
             return false;

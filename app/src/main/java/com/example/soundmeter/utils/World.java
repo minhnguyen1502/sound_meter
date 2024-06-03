@@ -1,4 +1,4 @@
-package com.example.soundmeter;
+package com.example.soundmeter.utils;
 
 public class World {
     public static float dbCount = 50.0f ;

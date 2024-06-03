@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
     <ImageView
+        android:background="?android:attr/actionBarItemBackground"
         android:id="@+id/iv_arrow_left"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -14,7 +16,8 @@
         android:padding="12dp"
         android:src="@drawable/arrow_left"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/txt_setting"
@@ -45,13 +48,13 @@
         android:src="@drawable/arrow_left"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_language"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_margin="24dp"
         android:layout_marginTop="27dp"
         android:background="@drawable/bg_setting"
@@ -62,6 +65,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_setting">
 
+
         <ImageView
             android:id="@+id/iv_translate"
             android:layout_width="48dp"
@@ -70,7 +74,8 @@
             android:src="@drawable/ic_translate"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:layout_width="0dp"
@@ -96,7 +101,8 @@
             android:src="@drawable/ic_arrow_right"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:id="@+id/tv_change_language"
@@ -121,7 +127,8 @@
         android:src="@drawable/ic_line"
         app:layout_constraintEnd_toEndOf="@id/constraint_language"
         app:layout_constraintStart_toStartOf="@+id/constraint_language"
-        app:layout_constraintTop_toBottomOf="@id/constraint_language" />
+        app:layout_constraintTop_toBottomOf="@id/constraint_language"
+        android:importantForAccessibility="no" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -130,17 +137,17 @@
         android:layout_marginTop="27dp"
         android:background="@drawable/bg_setting"
         android:backgroundTint="#002E31"
-        android:paddingHorizontal="8dp"
         android:paddingVertical="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_line">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingHorizontal="8dp"
             android:id="@+id/layout_share"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_click"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -153,7 +160,8 @@
                 android:padding="12dp"
                 android:src="@drawable/ic_share"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAccessibility="no" />
 
             <TextView
                 android:layout_width="0dp"
@@ -172,10 +180,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingHorizontal="8dp"
             android:id="@id/layout_rate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_click"
+            android:background="?android:attr/selectableItemBackground"
 
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -189,7 +198,8 @@
                 android:padding="12dp"
                 android:src="@drawable/ic_rate"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAccessibility="no" />
 
             <TextView
                 android:layout_width="0dp"
@@ -208,10 +218,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingHorizontal="8dp"
             android:id="@+id/layout_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_click"
+            android:background="?android:attr/selectableItemBackground"
 
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -225,7 +236,8 @@
                 android:padding="12dp"
                 android:src="@drawable/ic_about"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAccessibility="no" />
 
             <TextView
                 android:id="@+id/tv_about"
@@ -245,11 +257,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingHorizontal="8dp"
             android:id="@+id/layout_priprivacy_policy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_click"
             android:layout_marginTop="16dp"
+            android:background="?android:attr/selectableItemBackground"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_about">

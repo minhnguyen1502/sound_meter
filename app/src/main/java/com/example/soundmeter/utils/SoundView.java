@@ -1,4 +1,4 @@
-package com.example.soundmeter;
+package com.example.soundmeter.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,7 +10,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
-import androidx.annotation.Nullable;
+import com.example.soundmeter.R;
 
 public class SoundView extends View {
 

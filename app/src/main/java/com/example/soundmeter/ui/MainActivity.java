@@ -1,19 +1,29 @@
-package com.example.soundmeter;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.soundmeter.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
+
+import com.example.soundmeter.R;
 import com.example.soundmeter.databinding.ActivityMainBinding;
+import com.example.soundmeter.utils.FileUtil;
+import com.example.soundmeter.utils.Recoder;
+import com.example.soundmeter.utils.SoundView;
+import com.example.soundmeter.utils.World;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -27,6 +37,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,13 +45,12 @@ public class MainActivity extends AppCompatActivity {
     LineChart mChart;
     private Recoder recoder;
     private SoundView soundView;
-    private final int savedTime = 0;
-    private final long currentTime = 0;
     private ArrayList<Entry> yVals;
-
     private static final int msgWhat = 0x1001;
     private static final int refreshTime = 100;
     private float volume = 10000;
+    public static Typeface typeface;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,22 +58,26 @@ public class MainActivity extends AppCompatActivity {
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mainBinding.getRoot());
 
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+
+        mainBinding.getRoot().setPadding(mainBinding.getRoot().getPaddingLeft(),
+                mainBinding.getRoot().getPaddingTop() + getStatusBarHeight(), mainBinding.getRoot().getPaddingRight(),
+                mainBinding.getRoot().getPaddingBottom());
+
+//        typeface = Typeface.create(getAssets(), "font/source_sans_3_light_300.ttf");
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.source_sans_3_light_300);
         recoder = new Recoder();
         initChart();
 
-        mainBinding.imgSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, SettingActivity.class);
-                startActivity(i);
-            }
+        mainBinding.imgSetting.setOnClickListener(view -> {
+            Intent i = new Intent(MainActivity.this, SettingActivity.class);
+            startActivity(i);
         });
-        mainBinding.btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                reset();
-                Toast.makeText(MainActivity.this, "you reseted", Toast.LENGTH_SHORT).show();
-            }
+        mainBinding.btnReset.setOnClickListener(view -> {
+            reset();
+            Toast.makeText(MainActivity.this, "you reseted", Toast.LENGTH_SHORT).show();
         });
 
         mainBinding.btnInfo.setOnClickListener(new View.OnClickListener() {
@@ -72,19 +86,58 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, InfoActivity.class));
             }
         });
+
+        hideNavigation();
+    }
+
+    private int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+    public void hideNavigation() {
+        WindowInsetsControllerCompat windowInsetsController;
+        if (Build.VERSION.SDK_INT >= 30) {
+            windowInsetsController = ViewCompat.getWindowInsetsController(getWindow().getDecorView());
+        } else {
+            windowInsetsController = new WindowInsetsControllerCompat(getWindow(), mainBinding.getRoot());
+        }
+        if (windowInsetsController == null) {
+            return;
+        }
+        windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+        windowInsetsController.hide(WindowInsetsCompat.Type.navigationBars());
+        getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(i -> {
+            if (i == 0) {
+                new Handler().postDelayed(() -> {
+                    WindowInsetsControllerCompat windowInsetsController1;
+                    if (Build.VERSION.SDK_INT >= 30) {
+                        windowInsetsController1 = ViewCompat.getWindowInsetsController(getWindow().getDecorView());
+                    } else {
+                        windowInsetsController1 = new WindowInsetsControllerCompat(getWindow(), mainBinding.getRoot());
+                    }
+                    Objects.requireNonNull(windowInsetsController1).hide(WindowInsetsCompat.Type.navigationBars());
+                }, 3000);
+            }
+        });
     }
 
     private void reset() {
         World.reset();
-        mainBinding.tvValue.setText(String.format("%.2f", World.dbCount).replace(",","."));
-        mainBinding.tvMax.setText(String.format("%.2f", World.MAX).replace(",","."));
-        mainBinding.tvMin.setText(String.format("%.2f", World.MIN).replace(",","."));
-        mainBinding.tvAvg.setText(String.format("%.2f", World.getAvg()).replace(",","."));
+        mainBinding.tvValue.setText(String.format("%.1f", World.dbCount).replace(",", "."));
+        mainBinding.tvMax.setText(String.format("%.1f dB", World.MAX).replace(",", "."));
+        mainBinding.tvMin.setText(String.format("%.1f dB", World.MIN).replace(",", "."));
+        mainBinding.tvAvg.setText(String.format("%.1f dB", World.getAvg()).replace(",", "."));
         mChart.clear();
         initChart();
         startListen();
     }
 
+    @SuppressLint("HandlerLeak")
     private final Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -95,12 +148,12 @@ public class MainActivity extends AppCompatActivity {
             volume = recoder.getMax();
             if (volume > 0 && volume < 10000) {
                 float dbCount = World.setDbCount(20 * (float) (Math.log10(volume)));
-                mainBinding.tvValue.setText(String.format("%.2f", dbCount).replace(",","."));
-                mainBinding.tvMax.setText(String.format("%.2f", World.MAX).replace(",","."));
-                mainBinding.tvMin.setText(String.format("%.2f", World.MIN).replace(",","."));
-                mainBinding.tvAvg.setText(String.format("%.2f", World.getAvg()).replace(",","."));
+                mainBinding.tvValue.setText(String.format("%.1f", dbCount).replace(",", "."));
+                mainBinding.tvMax.setText(String.format("%.1f dB", World.MAX).replace(",", "."));
+                mainBinding.tvMin.setText(String.format("%.1f dB", World.MIN).replace(",", "."));
+                mainBinding.tvAvg.setText(String.format("%.1f dB", World.getAvg()).replace(",", "."));
                 soundView.refresh();
-                addEntry(dbCount);
+                updateData(dbCount);
             }
             startListen();
         }
@@ -116,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
             if (recoder.startRecoding()) {
                 startListen();
             } else {
+                World.dbCount = 0;
+                mainBinding.ivImg.refresh();
                 Toast.makeText(this, "Failed recoding", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
@@ -128,12 +183,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         soundView = findViewById(R.id.iv_img);
-        File file = FileUtil.createFile("temp.amr");
-        if (file != null) {
-            startRecode(file);
-        } else {
-            Toast.makeText(this, "Create file failed", Toast.LENGTH_SHORT).show();
-        }
+        File file = FileUtil.createFile("sound_meter.amr");
+        startRecode(file);
     }
 
     @Override
@@ -151,48 +202,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initChart() {
+
         mChart = findViewById(R.id.chart);
-        mChart.setViewPortOffsets(50, 20, 5, 60);
+        mChart.setViewPortOffsets(104, 20, 5, 60);
         mChart.setTouchEnabled(true);
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);
         mChart.setPinchZoom(true);
-        mChart.setDrawGridBackground(false);  // Không có nền cho khung lưới
+        mChart.setDrawGridBackground(false);
         mChart.getDescription().setEnabled(false);
+
 
         // Thiết lập trục X
         XAxis x = mChart.getXAxis();
         x.setEnabled(true);
+        x.setTypeface(typeface);
+        x.setTextSize(10f);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setDrawGridLines(true);  // Hiển thị đường lưới dọc
-        x.setGranularity(120f);  // Đặt khoảng cách giữa các nhãn là 10 đơn vị
-        x.setLabelCount(4, true); // Đảm bảo có nhãn mỗi 10 đơn vị
+        x.setDrawGridLines(true);
+        x.setTextColor(Color.WHITE);
+//        x.setLabelCount(4, true);
         x.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-                return String.format("%.0f s", value);
+                return String.format("%.1f s", value / 1000); // Chia cho 1000 để chuyển đổi từ mili giây sang giây
             }
         });
 
-        // Thiết lập trục Y
-//        YAxis y = mChart.getAxisLeft();
-//        y.setLabelCount(8, true);  // Đảm bảo có 8 nhãn từ 0 đến 140 với khoảng cách 20 đơn vị
-//        y.setTextColor(R.color.green);
-//        y.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-//        y.setDrawGridLines(true);  // Hiển thị đường lưới ngang
-//        y.setAxisLineColor(R.color.green);
-//        y.setAxisMinimum(0);
-//        y.setAxisMaximum(160);
-
+//      Thiết lập trục Y
         YAxis y = mChart.getAxisLeft();
+        y.setLabelCount(6, false);
+        y.setTextColor(Color.WHITE);
         y.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-                y.setLabelCount(8, true);  // Đảm bảo có 8 nhãn từ 0 đến 140 với khoảng cách 20 đơn vị
-
-        y.setDrawGridLines(true);  // Hiển thị đường lưới ngang
-        y.setDrawLabels(false);  // Ẩn giá trị trên trục Y
-        y.setAxisLineColor(R.color.green);
+        y.setDrawGridLines(false);
+        y.setDrawGridLines(true);
+        x.setTypeface(typeface);
+        x.setTextSize(10f);
         y.setAxisMinimum(0);
-        y.setAxisMaximum(160);
+        y.setAxisMaximum(140);
         y.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
@@ -209,11 +256,7 @@ public class MainActivity extends AppCompatActivity {
         set1.setCubicIntensity(0.2f);
         set1.setDrawFilled(true);
         set1.setDrawCircles(false);
-        set1.setCircleColor(R.color.green);
-        set1.setHighLightColor(Color.rgb(244, 117, 117));
-        set1.setColor(R.color.green);
-        set1.setFillColor(R.color.green);
-        set1.setFillAlpha(100);
+        set1.setColor(Color.rgb(0, 255, 255));
         set1.setDrawHorizontalHighlightIndicator(false);
         set1.setFillFormatter(new IFillFormatter() {
             @Override
@@ -228,10 +271,11 @@ public class MainActivity extends AppCompatActivity {
 
         mChart.setData(data);
         mChart.getLegend().setEnabled(false);
+        mChart.animateXY(2000, 2000);
         mChart.invalidate();
     }
 
-    private void addEntry(float dbCount) {
+    private void updateData(float dbCount) {
         LineData data = mChart.getData();
         if (data != null) {
             ILineDataSet set = data.getDataSetByIndex(0);
@@ -239,11 +283,10 @@ public class MainActivity extends AppCompatActivity {
                 set = createSet();
                 data.addDataSet(set);
             }
-            data.addEntry(new Entry(set.getEntryCount(), dbCount), 0);
+            data.addEntry(new Entry(set.getEntryCount() * 0.1f, dbCount), 0); // Nhân với 0.1 để chuyển đổi từ mili giây sang giây
             data.notifyDataChanged();
 
             mChart.notifyDataSetChanged();
-            mChart.setVisibleXRangeMaximum(50);
             mChart.moveViewToX(data.getEntryCount());
         }
     }
@@ -254,11 +297,6 @@ public class MainActivity extends AppCompatActivity {
         set.setCubicIntensity(0.2f);
         set.setDrawFilled(true);
         set.setDrawCircles(false);
-        set.setCircleColor(Color.GREEN);
-        set.setHighLightColor(Color.rgb(244, 117, 117));
-        set.setColor(Color.GREEN);
-        set.setFillColor(Color.GREEN);
-        set.setFillAlpha(100);
         set.setDrawHorizontalHighlightIndicator(false);
         set.setFillFormatter(new IFillFormatter() {
             @Override
@@ -267,5 +305,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         return set;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

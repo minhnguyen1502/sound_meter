@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
 
     <ImageView
+        android:background="?android:attr/actionBarItemBackground"
         android:id="@+id/img_setting"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -23,10 +24,10 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
         android:fontFamily="@font/gugi"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:ellipsize="end"
         android:lines="1"
         android:maxLines="1"
         android:paddingHorizontal="16dp"
@@ -69,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="6dp"
-            android:contentDescription="Info"
+            android:contentDescription="@string/info"
             android:src="@drawable/ic_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +83,8 @@
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:maxLines="1"
+            android:fontFamily="@font/source_sans_3_medium_500"
+            android:textSize="14sp"
             android:text="@string/info"
             app:layout_constraintBottom_toBottomOf="@id/ivInfo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -105,6 +108,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginVertical="6dp"
+            android:importantForAccessibility="no"
             android:src="@drawable/refresh"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -118,13 +122,15 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:text="@string/reset"
+            android:fontFamily="@font/source_sans_3_medium_500"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_reset"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_reset"
             app:layout_constraintTop_toTopOf="@+id/iv_reset" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.example.soundmeter.SoundView
+    <com.example.soundmeter.utils.SoundView
         android:id="@+id/iv_img"
         android:layout_width="240dp"
         android:layout_height="240dp"
@@ -134,48 +140,50 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_info" />
 
     <TextView
-    android:id="@+id/tv_value"
+        android:id="@+id/tv_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="500"
-        android:textColor="@color/white"
-        android:fontFamily="@font/source_sans_3_semi_bold_600"
-        android:textSize="40sp"
         android:layout_marginBottom="43dp"
+        android:ellipsize="end"
         android:focusable="false"
+        android:fontFamily="@font/source_sans_3_semi_bold_600"
         android:lines="1"
         android:maxLines="1"
-        android:ellipsize="end"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/layout_value"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
+
     <TextView
         android:id="@+id/tv_db"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="dB"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/source_sans_3_semi_bold_600"
-        android:textSize="24sp"
+        android:ellipsize="end"
         android:focusable="false"
+        android:fontFamily="@font/source_sans_3_semi_bold_600"
         android:lines="1"
         android:maxLines="1"
-        android:ellipsize="end"
+        android:text="dB"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/layout_value"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:id="@+id/layout_value"
-        android:layout_marginHorizontal="24dp"
-        android:orientation="horizontal"
-        android:weightSum="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="12dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="3"
         app:layout_constraintStart_toStartOf="@+id/btn_info"
         app:layout_constraintTop_toBottomOf="@+id/iv_img">
 
@@ -196,12 +204,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:fontFamily="@font/source_sans_3_regular_400"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:fontFamily="@font/source_sans_3_regular_400"
                 android:text="MIN"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_min"
@@ -209,22 +218,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
+                android:fontFamily="@font/source_sans_3_medium_500"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="15.5 dB"
-                android:fontFamily="@font/source_sans_3_medium_500"
+                android:text="0 dB"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="1"
             android:id="@+id/avg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingHorizontal="10dp"
@@ -237,12 +247,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:fontFamily="@font/source_sans_3_regular_400"
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:text="AVG"
-                android:fontFamily="@font/source_sans_3_regular_400"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_avg"
@@ -250,22 +261,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
+                android:fontFamily="@font/source_sans_3_medium_500"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="15.5 dB"
-                android:fontFamily="@font/source_sans_3_medium_500"
+                android:text="0 dB"
 
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingHorizontal="10dp"
@@ -278,12 +290,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:fontFamily="@font/source_sans_3_regular_400"
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:text="MAX"
-                android:fontFamily="@font/source_sans_3_regular_400"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tv_max"
@@ -291,13 +304,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
+                android:fontFamily="@font/source_sans_3_medium_500"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="15.5 dB"
-                android:fontFamily="@font/source_sans_3_medium_500"
+                android:text="0 dB"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
     </LinearLayout>
@@ -306,33 +320,23 @@
         android:layout_width="328dp"
         android:layout_height="186dp"
         android:layout_marginTop="12dp"
-        android:paddingStart="20dp"
-        android:paddingBottom="21dp"
-        android:paddingTop="11dp"
         android:background="@drawable/bg_line_chart"
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingStart="12dp"
+        android:paddingTop="11dp"
+        android:paddingBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_value">
-        
-        <ImageView
-android:id="@+id/iv_number_db"
-            android:layout_width="30dp"
-            android:layout_height="152dp"
-            android:src="@drawable/img_numder_db"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_value"
+        tools:ignore="RtlSymmetry">
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-
-            app:layout_constraintStart_toEndOf="@id/iv_number_db"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
