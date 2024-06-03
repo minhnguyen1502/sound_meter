@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.soundmeter.R;
 import com.example.soundmeter.databinding.ActivityLanguagesBinding;
 
 import java.util.Locale;
@@ -29,6 +30,8 @@ public class LanguagesActivity extends AppCompatActivity {
     public static final String PREF_LANGUAGE = "SelectedLanguage";
     ActivityLanguagesBinding languagesBinding;
     private String selectedLanguage;
+    private View selectedLanguageView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,58 +42,65 @@ public class LanguagesActivity extends AppCompatActivity {
         languagesBinding.constraintEng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                highlightSelectedLanguage(view);
+
                 selectedLanguage = "en";
-                Toast.makeText(LanguagesActivity.this, "You choose English", Toast.LENGTH_SHORT).show();
             }
         });
         languagesBinding.constraintFrench.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                highlightSelectedLanguage(view);
+
                 selectedLanguage = "fr";
-                Toast.makeText(LanguagesActivity.this, "You choose French", Toast.LENGTH_SHORT).show();
             }
         });
         languagesBinding.constraintGerman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                highlightSelectedLanguage(view);
+
 
                 selectedLanguage = "de";
 
-                Toast.makeText(LanguagesActivity.this, "You choose German", Toast.LENGTH_SHORT).show();
             }
         });
         languagesBinding.constraintHindi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                highlightSelectedLanguage(view);
+
 
                 selectedLanguage = "hi";
 
-                Toast.makeText(LanguagesActivity.this, "You choose Hindi", Toast.LENGTH_SHORT).show();
 
             }
         });
         languagesBinding.constraintIndo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                highlightSelectedLanguage(view);
+
                 selectedLanguage = "in";
 
-                Toast.makeText(LanguagesActivity.this, "You choose Indonesia", Toast.LENGTH_SHORT).show();
             }
         });
         languagesBinding.constraintSpanish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                highlightSelectedLanguage(view);
+
                 selectedLanguage = "es";
 
-                Toast.makeText(LanguagesActivity.this, "You choose Spanish", Toast.LENGTH_SHORT).show();
 
             }
         });
         languagesBinding.constraintPortu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                highlightSelectedLanguage(view);
+
                 selectedLanguage = "pt";
-                Toast.makeText(LanguagesActivity.this, "You choose Portuguese", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -112,7 +122,6 @@ public class LanguagesActivity extends AppCompatActivity {
                     Intent i = new Intent(LanguagesActivity.this, MainActivity.class);
                     finish();
                     startActivity(i);
-                    Toast.makeText(LanguagesActivity.this, "You changed language success", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -163,6 +172,19 @@ public class LanguagesActivity extends AppCompatActivity {
                 }, 3000);
             }
         });
+    }
+
+    private void highlightSelectedLanguage(View view) {
+        // Reset background of previously selected language
+        if (selectedLanguageView != null) {
+            selectedLanguageView.setBackgroundResource(R.drawable.bg_languages); // original background
+        }
+
+        // Set background of selected language
+        view.setBackgroundResource(R.drawable.bg_selected_language);
+
+        // Update the reference to the selected view
+        selectedLanguageView = view;
     }
     public void changeLanguage(Activity activity,String language) {
         Locale locale = new Locale(language);
