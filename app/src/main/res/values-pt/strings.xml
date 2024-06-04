@@ -36,4 +36,9 @@
     <string name="share">Compartilhar</string>
     <string name="rate">Avaliar</string>
     <string name="privacy_policy">Política de Privacidade</string>
+    <string name="quit">Você quer sair?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="choose_language_before_change">escolha o idioma antes de mudar</string>
+
 </resources>

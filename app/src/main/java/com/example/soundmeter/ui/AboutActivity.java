@@ -5,7 +5,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,15 +17,24 @@ import android.view.View;
 
 import com.example.soundmeter.databinding.ActivityAboutBinding;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class AboutActivity extends AppCompatActivity {
 
     ActivityAboutBinding aboutBinding;
+    public static final String PREFS_NAME = "LanguagePrefs";
+    public static final String PREF_LANGUAGE = "SelectedLanguage";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String selectedLanguage = getSelectedLanguage();
+        Locale locale = new Locale(selectedLanguage);
+        Locale.setDefault(locale);
+        Configuration configuration = getResources().getConfiguration();
+        configuration.setLocale(locale);
+        getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
         aboutBinding = ActivityAboutBinding.inflate(getLayoutInflater());
         setContentView(aboutBinding.getRoot());
         aboutBinding.ivArrowLeft.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +53,13 @@ public class AboutActivity extends AppCompatActivity {
                 aboutBinding.getRoot().getPaddingRight(),
                 aboutBinding.getRoot().getPaddingBottom());
 
+
         hideNavigation();
+    }
+
+    private String getSelectedLanguage() {
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(PREF_LANGUAGE, "en");
     }
 
     private int getStatusBarHeight() {

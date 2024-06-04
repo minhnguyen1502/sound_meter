@@ -36,4 +36,9 @@
     <string name="share">शेयर करना</string>
     <string name="rate">दर</string>
     <string name="privacy_policy">गोपनीयता नीति</string>
+    <string name="quit">क्या आप छोड़ना चाहते हैं?</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    <string name="choose_language_before_change">परिवर्तन से पहले भाषा चुनें</string>
+
 </resources>

@@ -8,7 +8,6 @@ import java.io.IOException;
 public class FileUtil {
     private static final String LOCAL = "SoundMeter";
     private static final String LOCAL_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + File.separator;
-//    private static final String LOCAL_PATH = Environment.DIRECTORY_DOWNLOADS + File.separator;
     private static final String REC_PATH = LOCAL_PATH + LOCAL + File.separator;
 
     static {

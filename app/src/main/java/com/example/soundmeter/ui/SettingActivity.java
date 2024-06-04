@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,17 +19,22 @@ import android.widget.Toast;
 import com.example.soundmeter.R;
 import com.example.soundmeter.databinding.ActivitySettingBinding;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class SettingActivity extends AppCompatActivity {
-
     ActivitySettingBinding settingBinding;
-
     public static final String PREFS_NAME = "LanguagePrefs";
     public static final String PREF_LANGUAGE = "SelectedLanguage";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String selectedLanguage = getSelectedLanguage();
+        Locale locale = new Locale(selectedLanguage);
+        Locale.setDefault(locale);
+        Configuration configuration = getResources().getConfiguration();
+        configuration.setLocale(locale);
+        getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
         settingBinding = ActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(settingBinding.getRoot());
 
@@ -45,7 +51,6 @@ public class SettingActivity extends AppCompatActivity {
         }
     });
 
-        String selectedLanguage = getSelectedLanguage();
         settingBinding.tvChangeLanguage.setText(getLanguageDisplayName(selectedLanguage));
 
     settingBinding.layoutAbout.setOnClickListener(new View.OnClickListener() {
@@ -57,20 +62,17 @@ public class SettingActivity extends AppCompatActivity {
     settingBinding.layoutShare.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(SettingActivity.this, "share", Toast.LENGTH_SHORT).show();
         }
     });
     settingBinding.layoutRate.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(SettingActivity.this, "rate", Toast.LENGTH_SHORT).show();
         }
     });
 
     settingBinding.layoutPriprivacyPolicy.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(SettingActivity.this, "privacy policy", Toast.LENGTH_SHORT).show();
         }
     });
         getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -81,8 +83,6 @@ public class SettingActivity extends AppCompatActivity {
                 settingBinding.getRoot().getPaddingTop() + getStatusBarHeight(),
                 settingBinding.getRoot().getPaddingRight(),
                 settingBinding.getRoot().getPaddingBottom());
-
-
 
         hideNavigation();
     }
@@ -123,7 +123,7 @@ public class SettingActivity extends AppCompatActivity {
     }
     private String getSelectedLanguage() {
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(PREF_LANGUAGE, "en"); // Default to English if no language is selected
+        return sharedPreferences.getString(PREF_LANGUAGE, "en");
     }
 
     private String getLanguageDisplayName(String languageCode) {

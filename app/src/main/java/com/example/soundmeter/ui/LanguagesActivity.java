@@ -43,7 +43,6 @@ public class LanguagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 highlightSelectedLanguage(view);
-
                 selectedLanguage = "en";
             }
         });
@@ -51,7 +50,6 @@ public class LanguagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 highlightSelectedLanguage(view);
-
                 selectedLanguage = "fr";
             }
         });
@@ -59,8 +57,6 @@ public class LanguagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 highlightSelectedLanguage(view);
-
-
                 selectedLanguage = "de";
 
             }
@@ -69,8 +65,6 @@ public class LanguagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 highlightSelectedLanguage(view);
-
-
                 selectedLanguage = "hi";
 
 
@@ -80,7 +74,6 @@ public class LanguagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 highlightSelectedLanguage(view);
-
                 selectedLanguage = "in";
 
             }
@@ -89,7 +82,6 @@ public class LanguagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 highlightSelectedLanguage(view);
-
                 selectedLanguage = "es";
 
 
@@ -99,7 +91,6 @@ public class LanguagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 highlightSelectedLanguage(view);
-
                 selectedLanguage = "pt";
 
             }
@@ -114,7 +105,7 @@ public class LanguagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (selectedLanguage == null) {
-                    Toast.makeText(LanguagesActivity.this, "choose language before change", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LanguagesActivity.this, R.string.choose_language_before_change, Toast.LENGTH_SHORT).show();
                 } else {
                     changeLanguage(LanguagesActivity.this,selectedLanguage);
                     saveSelectedLanguage(selectedLanguage);
@@ -133,9 +124,6 @@ public class LanguagesActivity extends AppCompatActivity {
                 languagesBinding.getRoot().getPaddingTop() + getStatusBarHeight(),
                 languagesBinding.getRoot().getPaddingRight(),
                 languagesBinding.getRoot().getPaddingBottom());
-
-
-
         hideNavigation();
     }
 
@@ -175,15 +163,10 @@ public class LanguagesActivity extends AppCompatActivity {
     }
 
     private void highlightSelectedLanguage(View view) {
-        // Reset background of previously selected language
         if (selectedLanguageView != null) {
-            selectedLanguageView.setBackgroundResource(R.drawable.bg_languages); // original background
+            selectedLanguageView.setBackgroundResource(R.drawable.bg_languages);
         }
-
-        // Set background of selected language
         view.setBackgroundResource(R.drawable.bg_selected_language);
-
-        // Update the reference to the selected view
         selectedLanguageView = view;
     }
     public void changeLanguage(Activity activity,String language) {
@@ -195,13 +178,12 @@ public class LanguagesActivity extends AppCompatActivity {
         configuration.setLocale(locale);
         resources.updateConfiguration(configuration,
                 resources.getDisplayMetrics());
-
-
     }
-    private void saveSelectedLanguage(String language) {
+
+    private void saveSelectedLanguage(String languageCode) {
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PREF_LANGUAGE, language);
+        editor.putString(PREF_LANGUAGE, languageCode);
         editor.apply();
     }
 }

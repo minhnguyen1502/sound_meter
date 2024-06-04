@@ -1,7 +1,11 @@
 package com.example.soundmeter.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -12,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.ViewCompat;
@@ -37,12 +42,15 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding mainBinding;
     LineChart mChart;
+    public static final String PREFS_NAME = "LanguagePrefs";
+    public static final String PREF_LANGUAGE = "SelectedLanguage";
     private Recoder recoder;
     private SoundView soundView;
     private ArrayList<Entry> yVals;
@@ -55,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String selectedLanguage = getSelectedLanguage();
+        Locale locale = new Locale(selectedLanguage);
+        Locale.setDefault(locale);
+        Configuration configuration = getResources().getConfiguration();
+        configuration.setLocale(locale);
+        getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mainBinding.getRoot());
 
@@ -66,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                 mainBinding.getRoot().getPaddingTop() + getStatusBarHeight(), mainBinding.getRoot().getPaddingRight(),
                 mainBinding.getRoot().getPaddingBottom());
 
-//        typeface = Typeface.create(getAssets(), "font/source_sans_3_light_300.ttf");
         Typeface typeface = ResourcesCompat.getFont(this, R.font.source_sans_3_light_300);
         recoder = new Recoder();
         initChart();
@@ -77,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         });
         mainBinding.btnReset.setOnClickListener(view -> {
             reset();
-            Toast.makeText(MainActivity.this, "you reseted", Toast.LENGTH_SHORT).show();
         });
 
         mainBinding.btnInfo.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
         hideNavigation();
     }
 
+    private String getSelectedLanguage() {
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(PREF_LANGUAGE, "en");
+    }
     private int getStatusBarHeight() {
         int result = 0;
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
@@ -196,23 +212,26 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         recoder.deleteRecoding();
         handler.hasMessages(msgWhat);
+        super.onDestroy();
+
+    }
+
+    public int dpToPx(float dp, Context context ) {
+        return Math.round(dp * context.getResources().getDisplayMetrics().density);
     }
 
     private void initChart() {
 
         mChart = findViewById(R.id.chart);
-        mChart.setViewPortOffsets(104, 20, 5, 60);
-        mChart.setTouchEnabled(true);
+        mChart.setViewPortOffsets(dpToPx(38, this), dpToPx(10, this), 0, dpToPx(18, this));
+        mChart.setTouchEnabled(false);
         mChart.setDragEnabled(true);
-        mChart.setScaleEnabled(true);
-        mChart.setPinchZoom(true);
+        mChart.setScaleEnabled(false);
+        mChart.setPinchZoom(false);
         mChart.setDrawGridBackground(false);
         mChart.getDescription().setEnabled(false);
-
-
         // Thiết lập trục X
         XAxis x = mChart.getXAxis();
         x.setEnabled(true);
@@ -225,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
         x.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-                return String.format("%.1f s", value / 1000); // Chia cho 1000 để chuyển đổi từ mili giây sang giây
+                return String.format("%.0f s", value);
             }
         });
 
@@ -252,10 +271,11 @@ public class MainActivity extends AppCompatActivity {
         // Thiết lập dữ liệu cho biểu đồ
         yVals = new ArrayList<>();
         LineDataSet set1 = new LineDataSet(yVals, "Sound Level");
-        set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set1.setMode(LineDataSet.Mode.LINEAR);
         set1.setCubicIntensity(0.2f);
         set1.setDrawFilled(true);
         set1.setDrawCircles(false);
+        set1.setHighlightEnabled(false);
         set1.setColor(Color.rgb(0, 255, 255));
         set1.setDrawHorizontalHighlightIndicator(false);
         set1.setFillFormatter(new IFillFormatter() {
@@ -271,7 +291,6 @@ public class MainActivity extends AppCompatActivity {
 
         mChart.setData(data);
         mChart.getLegend().setEnabled(false);
-        mChart.animateXY(2000, 2000);
         mChart.invalidate();
     }
 
@@ -283,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
                 set = createSet();
                 data.addDataSet(set);
             }
-            data.addEntry(new Entry(set.getEntryCount() * 0.1f, dbCount), 0); // Nhân với 0.1 để chuyển đổi từ mili giây sang giây
+            data.addEntry(new Entry(set.getEntryCount() * 0.1f, dbCount), 0);
             data.notifyDataChanged();
 
             mChart.notifyDataSetChanged();
@@ -297,6 +316,7 @@ public class MainActivity extends AppCompatActivity {
         set.setCubicIntensity(0.2f);
         set.setDrawFilled(true);
         set.setDrawCircles(false);
+        set.setHighlightEnabled(false);
         set.setDrawHorizontalHighlightIndicator(false);
         set.setFillFormatter(new IFillFormatter() {
             @Override
@@ -309,6 +329,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        showQuitDialog();
+    }
+
+    private void showQuitDialog() {
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.quit)
+                .setCancelable(false)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finishAffinity(); // Thoát hoàn toàn ứng dụng
+                    }
+                })
+                .setNegativeButton(R.string.no, null)
+                .show();
     }
 }

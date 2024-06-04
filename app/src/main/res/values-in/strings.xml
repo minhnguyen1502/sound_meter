@@ -36,4 +36,9 @@
     <string name="share">Bagikan</string>
     <string name="rate">Nilai</string>
     <string name="privacy_policy">Kebijakan privasi</string>
+    <string name="quit">Apakah Anda ingin keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="choose_language_before_change">pilih bahasa sebelum mengubah</string>
+
 </resources>
