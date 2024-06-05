@@ -1,5 +1,7 @@
 package com.example.soundmeter.utils;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
 
 import java.io.File;
@@ -21,8 +23,15 @@ public class FileUtil {
         }
     }
 
-    public static File createFile(String fileName) {
-        File mFile = new File(REC_PATH + fileName);
+    public static File createFile(String fileName, Context context) {
+        File mFile;
+        if (Build.VERSION.SDK_INT == 29) {
+            // save file android 10
+            mFile = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + LOCAL + fileName);
+        } else {
+            // all android
+            mFile = new File(REC_PATH + fileName);
+        }
         if (mFile.exists()) {
             mFile.delete();
         }

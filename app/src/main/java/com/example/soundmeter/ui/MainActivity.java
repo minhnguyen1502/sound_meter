@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         soundView = findViewById(R.id.iv_img);
-        File file = FileUtil.createFile("sound_meter.amr");
+        File file = FileUtil.createFile("sound_meter.amr", this);
         startRecode(file);
     }
 
@@ -338,7 +338,7 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        finishAffinity(); // Thoát hoàn toàn ứng dụng
+                        finishAffinity();
                     }
                 })
                 .setNegativeButton(R.string.no, null)
