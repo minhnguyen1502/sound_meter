@@ -27,8 +27,9 @@ public class SettingActivity extends AppCompatActivity {
     ActivitySettingBinding settingBinding;
     public static final String PREFS_NAME = "LanguagePrefs";
     public static final String PREF_LANGUAGE = "SelectedLanguage";
-
-//    SwitchCompat sound, vibration;
+    public static final String PREFS_VIBRATION = "VibrationPrefs";
+    public static final String PREF_VIBRATION_SWITCH = "VibrationSwitch";
+    SwitchCompat sound, vibration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,26 +91,16 @@ public class SettingActivity extends AppCompatActivity {
 
         hideNavigation();
 
-//        SharedPreferences getSound = getSharedPreferences("sound_switch",MODE_PRIVATE);
-//        SharedPreferences getVibration = getSharedPreferences("vibration_switch",MODE_PRIVATE);
-//        sound.setChecked(getSound.getBoolean("SoundSwitch", false));
-//        vibration.setChecked(getVibration.getBoolean("VibrationSwitch", false));
+        SharedPreferences prefs = getSharedPreferences(PREFS_VIBRATION, MODE_PRIVATE);
+        settingBinding.vibrationSwitch.setChecked(prefs.getBoolean(PREF_VIBRATION_SWITCH, false));
+        settingBinding.vibrationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean(PREF_VIBRATION_SWITCH, isChecked);
+            editor.apply();
+        });
     }
 
-//    public void SoundSwitch(View view){
-//
-//        if (settingBinding.soundSwitch.isChecked()){
-//            SharedPreferences.Editor soundSwitchPre = getSharedPreferences("sound_switch", MODE_PRIVATE).edit();
-//            soundSwitchPre.putBoolean("SoundSwitch", true);
-//            soundSwitchPre.apply();
-//            sound.setChecked(true);
-//        }else {
-//            SharedPreferences.Editor soundSwitchPre = getSharedPreferences("sound_switch", MODE_PRIVATE).edit();
-//            soundSwitchPre.putBoolean("SoundSwitch", false);
-//            soundSwitchPre.apply();
-//            sound.setChecked(false);
-//        }
-//    }
+
 //    public void VibrationSwitch(View view){
 //        if (settingBinding.soundSwitch.isChecked()){
 //            SharedPreferences.Editor vibrationSwitchPre = getSharedPreferences("vibration_switch", MODE_PRIVATE).edit();

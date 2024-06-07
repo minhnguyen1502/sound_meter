@@ -64,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean isPaused = false;
 
 //    MediaPlayer mediaPlayer;
-//    Vibrator vibrator;
-//    boolean bl_sound, bl_vibration;
+    Vibrator vibrator;
+    boolean bl_sound, bl_vibration;
+    public static final String PREFS_VIBRATION = "VibrationPrefs";
+    public static final String PREF_VIBRATION_SWITCH = "VibrationSwitch";
 
 
     @Override
@@ -88,9 +90,11 @@ public class MainActivity extends AppCompatActivity {
                 mainBinding.getRoot().getPaddingTop() + getStatusBarHeight(), mainBinding.getRoot().getPaddingRight(),
                 mainBinding.getRoot().getPaddingBottom());
 
-//        mediaPlayer = MediaPlayer.create(this, R.drawable.ic_pause);
-//        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+//        mediaPlayer = MediaPlayer.create(this, R.raw.ic_pause);  // Ensure ic_pause is an audio file in res/raw/
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
+        SharedPreferences prefs = getSharedPreferences(PREFS_VIBRATION, MODE_PRIVATE);
+        bl_vibration = prefs.getBoolean(PREF_VIBRATION_SWITCH, false);
 
         typeface = ResourcesCompat.getFont(this, R.font.source_sans_3_light_300);
 
@@ -110,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.ivPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vibrator.vibrate(1000);
                 isPaused = !isPaused;
                 if (isPaused) {
                     pauseMeasurement();
@@ -238,10 +243,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-//        SharedPreferences getSound = getSharedPreferences("sound_switch",MODE_PRIVATE);
-//        SharedPreferences getVibration = getSharedPreferences("vibration_switch",MODE_PRIVATE);
-//        bl_sound = getSound.getBoolean("SoundSwitch", false);
-//        bl_vibration = getVibration.getBoolean("VibrationSwitch", false);
+        SharedPreferences getVibration = getSharedPreferences("vibration_switch",MODE_PRIVATE);
+        bl_vibration = getVibration.getBoolean("VibrationSwitch", false);
 
         soundView = findViewById(R.id.iv_img);
         File file = FileUtil.createFile("sound_meter.amr", this);
