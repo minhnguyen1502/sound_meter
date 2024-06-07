@@ -7,7 +7,6 @@ public class World {
     public static float lastDB = dbCount;
     private static float mindb = 0.5f;
     private static float value = 0;
-
     public static float setDbCount(float mValue) {
         if (mValue > lastDB) {
             value = mValue - lastDB > mindb ? mValue - lastDB : mindb;
@@ -26,7 +25,7 @@ public class World {
 
     public static void reset() {
         dbCount = 50.0f;
-        MIN = 140;
+        MIN = 80;
         MAX = 0;
         lastDB = dbCount;
     }

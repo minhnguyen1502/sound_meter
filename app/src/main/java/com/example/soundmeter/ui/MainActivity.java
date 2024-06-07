@@ -8,10 +8,13 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 
@@ -58,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int refreshTime = 100;
     private float volume = 10000;
     public static Typeface typeface;
+    private boolean isPaused = false;
+
+//    MediaPlayer mediaPlayer;
+//    Vibrator vibrator;
+//    boolean bl_sound, bl_vibration;
 
 
     @Override
@@ -80,8 +88,14 @@ public class MainActivity extends AppCompatActivity {
                 mainBinding.getRoot().getPaddingTop() + getStatusBarHeight(), mainBinding.getRoot().getPaddingRight(),
                 mainBinding.getRoot().getPaddingBottom());
 
-        Typeface typeface = ResourcesCompat.getFont(this, R.font.source_sans_3_light_300);
+//        mediaPlayer = MediaPlayer.create(this, R.drawable.ic_pause);
+//        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
+
+        typeface = ResourcesCompat.getFont(this, R.font.source_sans_3_light_300);
+
         recoder = new Recoder();
+
         initChart();
 
         mainBinding.imgSetting.setOnClickListener(view -> {
@@ -89,9 +103,21 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
         });
         mainBinding.btnReset.setOnClickListener(view -> {
-            reset();
+            if (!isPaused) {
+                reset();
+            }
         });
-
+        mainBinding.ivPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isPaused = !isPaused;
+                if (isPaused) {
+                    pauseMeasurement();
+                } else {
+                    resumeMeasurement();
+                }
+            }
+        });
         mainBinding.btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +127,24 @@ public class MainActivity extends AppCompatActivity {
 
         hideNavigation();
     }
-
+//    public void SoundButton(View view){
+//        if (bl_sound){
+//            mediaPlayer.start();
+//        }else {
+//
+//        }
+//        if (bl_vibration){
+//            vibrator.vibrate(30);
+//        }
+//    }
+    private void pauseMeasurement() {
+        handler.removeMessages(msgWhat);
+        Toast.makeText(this, " Paused", Toast.LENGTH_SHORT).show();
+    }
+    private void resumeMeasurement() {
+        startListen();
+        Toast.makeText(this, " Resumed", Toast.LENGTH_SHORT).show();
+    }
     private String getSelectedLanguage() {
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(PREF_LANGUAGE, "en");
@@ -114,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return result;
     }
-
     public void hideNavigation() {
         WindowInsetsControllerCompat windowInsetsController;
         if (Build.VERSION.SDK_INT >= 30) {
@@ -141,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void reset() {
         World.reset();
         mainBinding.tvValue.setText(String.format("%.1f", World.dbCount).replace(",", "."));
@@ -152,13 +193,12 @@ public class MainActivity extends AppCompatActivity {
         initChart();
         startListen();
     }
-
     @SuppressLint("HandlerLeak")
     private final Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            if (this.hasMessages(msgWhat)) {
+            if (isPaused || this.hasMessages(msgWhat)) {
                 return;
             }
             volume = recoder.getMax();
@@ -174,11 +214,11 @@ public class MainActivity extends AppCompatActivity {
             startListen();
         }
     };
-
     private void startListen() {
-        handler.sendEmptyMessageDelayed(msgWhat, refreshTime);
+        if (!isPaused) {
+            handler.sendEmptyMessageDelayed(msgWhat, refreshTime);
+        }
     }
-
     public void startRecode(File mFile) {
         try {
             recoder.setmFile(mFile);
@@ -194,22 +234,25 @@ public class MainActivity extends AppCompatActivity {
             e.getStackTrace();
         }
     }
-
     @Override
     protected void onResume() {
         super.onResume();
+
+//        SharedPreferences getSound = getSharedPreferences("sound_switch",MODE_PRIVATE);
+//        SharedPreferences getVibration = getSharedPreferences("vibration_switch",MODE_PRIVATE);
+//        bl_sound = getSound.getBoolean("SoundSwitch", false);
+//        bl_vibration = getVibration.getBoolean("VibrationSwitch", false);
+
         soundView = findViewById(R.id.iv_img);
         File file = FileUtil.createFile("sound_meter.amr", this);
         startRecode(file);
     }
-
     @Override
     protected void onPause() {
         super.onPause();
         recoder.deleteRecoding();
         handler.hasMessages(msgWhat);
     }
-
     @Override
     protected void onDestroy() {
         recoder.deleteRecoding();
@@ -217,11 +260,9 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
 
     }
-
-    public int dpToPx(float dp, Context context ) {
+    public int dpToPx(float dp, Context context) {
         return Math.round(dp * context.getResources().getDisplayMetrics().density);
     }
-
     private void initChart() {
 
         mChart = findViewById(R.id.chart);
@@ -293,7 +334,6 @@ public class MainActivity extends AppCompatActivity {
         mChart.getLegend().setEnabled(false);
         mChart.invalidate();
     }
-
     private void updateData(float dbCount) {
         LineData data = mChart.getData();
         if (data != null) {
@@ -309,7 +349,6 @@ public class MainActivity extends AppCompatActivity {
             mChart.moveViewToX(data.getEntryCount());
         }
     }
-
     private LineDataSet createSet() {
         LineDataSet set = new LineDataSet(null, "Sound Level");
         set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
@@ -326,12 +365,10 @@ public class MainActivity extends AppCompatActivity {
         });
         return set;
     }
-
     @Override
     public void onBackPressed() {
         showQuitDialog();
     }
-
     private void showQuitDialog() {
         new AlertDialog.Builder(this)
                 .setMessage(R.string.quit)

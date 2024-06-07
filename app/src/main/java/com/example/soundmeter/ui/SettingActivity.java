@@ -1,6 +1,7 @@
 package com.example.soundmeter.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
@@ -26,6 +27,9 @@ public class SettingActivity extends AppCompatActivity {
     ActivitySettingBinding settingBinding;
     public static final String PREFS_NAME = "LanguagePrefs";
     public static final String PREF_LANGUAGE = "SelectedLanguage";
+
+//    SwitchCompat sound, vibration;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,54 +42,87 @@ public class SettingActivity extends AppCompatActivity {
         settingBinding = ActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(settingBinding.getRoot());
 
+//        settingBinding.soundSwitch;
+//        settingBinding.vibrationSwitch;
         settingBinding.ivArrowLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-    settingBinding.constraintLanguage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            startActivity(new Intent(SettingActivity.this, LanguagesActivity.class));
-        }
-    });
-
+        settingBinding.constraintLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingActivity.this, LanguagesActivity.class));
+            }
+        });
         settingBinding.tvChangeLanguage.setText(getLanguageDisplayName(selectedLanguage));
+        settingBinding.layoutAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingActivity.this, AboutActivity.class));
+            }
+        });
+        settingBinding.layoutShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        settingBinding.layoutRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
 
-    settingBinding.layoutAbout.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            startActivity(new Intent(SettingActivity.this, AboutActivity.class));
-        }
-    });
-    settingBinding.layoutShare.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-        }
-    });
-    settingBinding.layoutRate.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-        }
-    });
+        settingBinding.layoutPriprivacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
 
-    settingBinding.layoutPriprivacyPolicy.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-        }
-    });
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         getWindow().setNavigationBarColor(Color.TRANSPARENT);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-
-        settingBinding.getRoot().setPadding(settingBinding    .getRoot().getPaddingLeft(),
+        settingBinding.getRoot().setPadding(settingBinding.getRoot().getPaddingLeft(),
                 settingBinding.getRoot().getPaddingTop() + getStatusBarHeight(),
                 settingBinding.getRoot().getPaddingRight(),
                 settingBinding.getRoot().getPaddingBottom());
 
         hideNavigation();
+
+//        SharedPreferences getSound = getSharedPreferences("sound_switch",MODE_PRIVATE);
+//        SharedPreferences getVibration = getSharedPreferences("vibration_switch",MODE_PRIVATE);
+//        sound.setChecked(getSound.getBoolean("SoundSwitch", false));
+//        vibration.setChecked(getVibration.getBoolean("VibrationSwitch", false));
     }
+
+//    public void SoundSwitch(View view){
+//
+//        if (settingBinding.soundSwitch.isChecked()){
+//            SharedPreferences.Editor soundSwitchPre = getSharedPreferences("sound_switch", MODE_PRIVATE).edit();
+//            soundSwitchPre.putBoolean("SoundSwitch", true);
+//            soundSwitchPre.apply();
+//            sound.setChecked(true);
+//        }else {
+//            SharedPreferences.Editor soundSwitchPre = getSharedPreferences("sound_switch", MODE_PRIVATE).edit();
+//            soundSwitchPre.putBoolean("SoundSwitch", false);
+//            soundSwitchPre.apply();
+//            sound.setChecked(false);
+//        }
+//    }
+//    public void VibrationSwitch(View view){
+//        if (settingBinding.soundSwitch.isChecked()){
+//            SharedPreferences.Editor vibrationSwitchPre = getSharedPreferences("vibration_switch", MODE_PRIVATE).edit();
+//            vibrationSwitchPre.putBoolean("VibrationSwitch", true);
+//            vibrationSwitchPre.apply();
+//            vibration.setChecked(true);
+//        }else {
+//            SharedPreferences.Editor vibrationSwitchPre = getSharedPreferences("vibration_switch", MODE_PRIVATE).edit();
+//            vibrationSwitchPre.putBoolean("VibrationSwitch", false);
+//            vibrationSwitchPre.apply();
+//            sound.setChecked(false);
+//        }
+//    }
 
     private int getStatusBarHeight() {
         int result = 0;
@@ -125,7 +162,6 @@ public class SettingActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(PREF_LANGUAGE, "en");
     }
-
     private String getLanguageDisplayName(String languageCode) {
         switch (languageCode) {
             case "en":

@@ -35,20 +35,16 @@
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@id/img_setting"
-        app:layout_constraintEnd_toStartOf="@id/ivGone"
+        app:layout_constraintEnd_toStartOf="@id/iv_pause"
         app:layout_constraintStart_toEndOf="@+id/img_setting"
         app:layout_constraintTop_toTopOf="@+id/img_setting" />
 
     <ImageView
-        android:id="@+id/ivGone"
+        android:id="@+id/iv_pause"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="4dp"
-        android:clickable="false"
-        android:contentDescription="Gone"
-        android:focusable="false"
-        android:src="@drawable/ic_setting"
-        android:visibility="invisible"
+        android:src="@drawable/ic_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
@@ -173,6 +169,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="HardcodedText" />
+
+
 
     <LinearLayout
         android:id="@+id/layout_value"

@@ -58,18 +58,7 @@ public class SoundView extends View {
         postInvalidateDelayed(ANIMATION_INTERVAL);
     }
 
-//    @Override
-//    protected void onDraw(Canvas canvas) {
-//        super.onDraw(canvas);
-//        if (indiBitmap != null) {
-//            matrix.setRotate(getAngle(World.dbCount), newWidth / 2, newHeight * 215 / 460);
-//            canvas.drawBitmap(indiBitmap, newWidth / 2 - indiBitmap.getWidth() / 2, newHeight * 215 / 460 - indiBitmap.getHeight() / 2, paint);
-//        }
-//    }
-//
-//    private float getAngle(float dbCount) {
-//        return (dbCount - 85) * 5 / 3;
-//    }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
