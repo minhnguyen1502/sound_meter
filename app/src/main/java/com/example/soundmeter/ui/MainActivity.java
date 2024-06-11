@@ -73,12 +73,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         String selectedLanguage = getSelectedLanguage();
         Locale locale = new Locale(selectedLanguage);
         Locale.setDefault(locale);
         Configuration configuration = getResources().getConfiguration();
         configuration.setLocale(locale);
         getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mainBinding.getRoot());
 
